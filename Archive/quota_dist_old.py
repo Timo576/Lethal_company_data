@@ -38,7 +38,7 @@ def calculate_distributions(
 
 def calculate_many_quota(
         base_dist_array: np.ndarray[float],
-        quota_record_list: list[np.ndarray], upper_quota: int) -> None:
+        quota_record_list: list[pd.Series], upper_quota: int) -> None:
     """Calculates and save the distributions for multiple quotas"""
     quota_num: int
     print("1")

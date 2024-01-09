@@ -94,9 +94,11 @@ def bezier_curve(keyframes):
                 return ValueError("Invalid weighted mode")
         bezier_coefficient1_list.append(keyframe_pair[0].value)
         bezier_coefficient2_list.append(keyframe_pair[0].value +
-            keyframe_pair[0].out_tangent * keyframe_pair[0].out_weight)
+                                        keyframe_pair[0].out_tangent *
+                                        keyframe_pair[0].out_weight)
         bezier_coefficient3_list.append(keyframe_pair[1].value +
-            keyframe_pair[1].in_tangent * keyframe_pair[1].in_weight)
+                                        keyframe_pair[1].in_tangent *
+                                        keyframe_pair[1].in_weight)
         bezier_coefficient4_list.append(keyframe_pair[1].value)
     bezier_coefficients_list = np.vstack((bezier_coefficient1_list,
                                           bezier_coefficient2_list,
