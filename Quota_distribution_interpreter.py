@@ -39,7 +39,7 @@ def save_multiple_distributions(
         calculate_distributions(base_dist_array, 1, 130, 1.0))
     pd.to_pickle(quota_distribution, f"saved_arrays/quota_1.pkl")
     print("Quota 1 done")
-    for quota_num in range(starting_quota, upper_quota + 1):
+    for quota_num in range(starting_quota, upper_quota + 1):  # quota_num is +1
         pickled_quota: tuple[int_array, float_array] = pd.read_pickle(
             f"saved_arrays/quota_{quota_num - 1}.pkl")
         prev_quotas: int_array
@@ -110,10 +110,10 @@ def process_quota_distributions() -> None:
 def many_plots_and_averages():
     """Doobee do. Quota num is the num completed plus 1"""
     # save_sample_curve()
-    base_dist_array: float_array = np.load(
-        "saved_arrays/quota_test_monte.npy")
-    save_multiple_distributions(base_dist_array, 12, 37)
-    # process_quota_distributions()
+    # base_dist_array: float_array = np.load(
+    #     "saved_arrays/quota_test_monte.npy")
+    # save_multiple_distributions(base_dist_array, 12, 37)
+    process_quota_distributions()
 
 
 if __name__ == '__main__':
