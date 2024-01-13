@@ -1,0 +1,29 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: DigitalRuby.ThunderAndLightning.WaitForSecondsLightning
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: AF9B1EEC-498A-45AE-BD42-601D6AB85015
+// Assembly location: C:\Program Files (x86)\Steam\steamapps\common\Lethal Company\Lethal Company_Data\Managed\Assembly-CSharp.dll
+
+using UnityEngine;
+
+#nullable disable
+namespace DigitalRuby.ThunderAndLightning
+{
+  public class WaitForSecondsLightning : CustomYieldInstruction
+  {
+    private float remaining;
+
+    public WaitForSecondsLightning(float time) => this.remaining = time;
+
+    public override bool keepWaiting
+    {
+      get
+      {
+        if ((double) this.remaining <= 0.0)
+          return false;
+        this.remaining -= LightningBoltScript.DeltaTime;
+        return true;
+      }
+    }
+  }
+}
