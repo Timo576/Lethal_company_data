@@ -112,21 +112,11 @@ def process_quota_distributions() -> None:
 def many_plots_and_averages():
     """Doobee do. Quota num is the num completed plus 1"""
     # save_sample_curve()
-<<<<<<< HEAD:Quota_distributions/Quota_distribution_interpreter.py
     pre = timeit.default_timer()
     base_dist_array: float_array = np.load(
         "saved_arrays/quota_test_monte.npy")
-<<<<<<< Updated upstream:Quota_distribution_interpreter.py
     save_multiple_distributions(base_dist_array, 18, 37)
-=======
-    save_multiple_distributions(base_dist_array, 10, 10)
     print(f"Time taken: {timeit.default_timer() - pre:.2f} seconds")
-=======
-    base_dist_array: float_array = np.load(
-        "saved_arrays/quota_test_monte.npy")
-    save_multiple_distributions(base_dist_array, 18, 37)
->>>>>>> cf49b979d2b6922fb45987bbed938fed21a1a5cb:Quota_distribution_interpreter.py
->>>>>>> Stashed changes:Quota_distributions/Quota_distribution_interpreter.py
     # process_quota_distributions()
 
 

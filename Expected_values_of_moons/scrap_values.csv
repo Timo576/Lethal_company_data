@@ -1,0 +1,52 @@
+Name,Min value (c),Max value (c),Weight (lb),Conductive,Two-handed
+Air Horn,52,72,0,No,No
+Apparatus,80,80,31,Yes,Yes
+Bee Hive,50,156,0,Yes,Yes
+Bottles,44,56,19,No,Yes
+Brass Bell,48,80,24,Yes,No
+Candy,6,36,11,No,No
+Cash Register,80,160,84,Yes,Yes
+Chemical Jug,32,84,32,No,Yes
+Clown Horn,52,72,0,Yes,No
+Coffee Mug,24,68,5,No,No
+Comedy Mask,28,52,11,No,No
+Cookie Mold Pan,12,40,16,No,No
+Dustpan,12,32,0,No,No
+Egg Beater,12,44,11,Yes,No
+Fancy Lamp,60,128,21,Yes,Yes
+Flask,16,44,19,Yes,No
+Giftbox,12,28,19,No,No
+Gold Bar,102,210,77,Yes,No
+Golden Cup,40,80,16,No,No
+Hair Brush,8,36,11,No,No
+Hairdryer,60,100,7,No,No
+Homemade Flashbang,10,28,5,No,No
+Jar of Pickles,32,60,16,No,No
+Large Axle,36,56,16,Yes,Yes
+Large Bolt,20,32,19,Yes,No
+Laser Pointer,32,100,0,No,No
+Magic 7 Ball,36,72,16,No,No
+Magnifying Glass,44,60,11,No,No
+Metal Sheet,10,22,26,Yes,No
+Old Phone,48,64,5,No,No
+Painting,60,124,32,No,Yes
+Perfume Bottle,48,104,0,No,No
+Pill Bottle,16,40,0,No,No
+Plastic Fish,28,40,0,No,No
+Player Body,5,5,11,No,Yes
+Red Soda,18,90,7,Yes,No
+Remote,20,48,0,No,No
+Robot Toy,56,88,21,Yes,No
+Rubber Duckie,2,100,0,No,No
+Shotgun,30,90,16,No,No
+Steering Wheel,16,32,16,No,No
+Stop Sign,20,52,21,Yes,No
+Tea Kettle,32,56,21,Yes,No
+Teeth,60,84,0,No,No
+Toothpaste,14,48,0,No,No
+Toy Cube,24,44,0,No,No
+Tragedy Mask,28,52,11,No,No
+V-Type Engine,20,56,16,Yes,Yes
+Wedding Ring,52,80,16,Yes,No
+Whoopie Cushion,6,20,0,Yes,No
+Yield Sign,18,36,42,Yes,No
