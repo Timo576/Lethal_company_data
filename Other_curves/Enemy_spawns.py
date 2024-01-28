@@ -109,16 +109,13 @@ def bezier_curve(keyframes):
 
 
 def main():
-    """Main function, exp."""
+    """Try to make the curves"""
     # times = [0, 0.3851, 0.6767, 0.9998]
     # values = [2.2707, -0.0064, -7.0217, -14.8181]
     # derivatives = [7.5001, -2.7671, -27.2869, 0]
     # spawn_spline = spline(times, values, derivatives)
     # plotter(spawn_spline)
 
-    # times = [0, 0.11723505, 0.88036245, 1]
-    # values = [-0.50302887, -0.13017726, 0.15344214, 0.5030365]
-    # derivatives = [7.455404, 0.5548811, 0.5221589, 7.0514693]
 
     turret_keyframe1 = Keyframe(0, 2.0207, 0.3546, 0.3546, 0, 0, 0.9235)
     turret_keyframe2 = Keyframe(0.6991, 2.9655, 7.0642, 7.0642, 3, 0.2517,
