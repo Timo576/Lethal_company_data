@@ -105,17 +105,17 @@ def process_quota_distributions() -> None:
         quota_record_list_series.append(pd.read_pickle(quota_file))
     quota_record_list_series.insert(0, (np.array([130]), np.array([1.0])))
     find_stats(quota_record_list_series)
-    plot_bar_dist(quota_record_list_series)
+    # plot_bar_dist(quota_record_list_series)
 
 
 def many_plots_and_averages():
     """Doobee do. Quota num is the num completed plus 1"""
     # save_sample_curve()
-    # pre = timeit.default_timer()
+    pre = timeit.default_timer()
     base_dist_array: float_array = np.load(
         "saved_arrays/quota_test_monte.npy")
-    save_multiple_distributions(base_dist_array, 21, 22)
-    # print(f"Time taken: {timeit.default_timer() - pre:.0f} seconds")
+    save_multiple_distributions(base_dist_array, 15, 15)
+    print(f"Time taken: {timeit.default_timer() - pre:.0f} seconds")
     process_quota_distributions()
 
 

@@ -12,7 +12,7 @@ cnp.import_array()
 cpdef calculate_distributions(
         double[::1] base_dist_array,
         unsigned char quota_num,
-        long long[::1] previous_quotas,
+        long[::1] previous_quotas,
         double[::1] previous_probabilities):
     """Calculates the distributions for a given quota number"""
     # pre = timeit.default_timer()
@@ -48,8 +48,7 @@ cpdef calculate_distributions(
 
     # loop = timeit.default_timer()
     # print(f"Overhead-top {loop-pre}")
-    print(prev_quota_len, longest)
-    for prev_quota_idx in prange(prev_quota_len, nogil=True, ):
+    for prev_quota_idx in prange(prev_quota_len, nogil=True):
         prev_quota = previous_quotas[prev_quota_idx]
         for counts_idx in prange(longest):
             quota_count[counts_idx] = 0
@@ -72,5 +71,5 @@ cpdef calculate_distributions(
     for counts_idx in range(longest):
         quota_probs[counts_idx] = counts[counts_idx] / quota_counts_sum
     free(counts)
-    cdef cnp.ndarray[Py_ssize_t, ] quota_values = np.nonzero(quota_probs)[0]
+    cdef cnp.ndarray[long long, ] quota_values = np.nonzero(quota_probs)[0]
     return quota_values, quota_probs[quota_probs != 0]

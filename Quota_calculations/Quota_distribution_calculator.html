@@ -395,8 +395,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <pre class='cython code score-0 '>  __pyx_t_9 = __pyx_f_5numpy_import_array();<span class='error_goto'> if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 9, __pyx_L1_error)</span>
 </pre><pre class="cython line score-0">&#xA0;<span class="">10</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">11</span>: <span class="c"># noinspection PyTypeChecker</span></pre>
-<pre class="cython line score-129" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">12</span>: <span class="k">cpdef</span> <span class="nf">calculate_distributions</span><span class="p">(</span></pre>
-<pre class='cython code score-129 '>static PyObject *__pyx_pw_18Quota_calculations_29Quota_distribution_calculator_1calculate_distributions(PyObject *__pyx_self, 
+<pre class="cython line score-130" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">12</span>: <span class="k">cpdef</span> <span class="nf">calculate_distributions</span><span class="p">(</span></pre>
+<pre class='cython code score-130 '>static PyObject *__pyx_pw_18Quota_calculations_29Quota_distribution_calculator_1calculate_distributions(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -412,13 +412,14 @@ static PyObject *__pyx_f_18Quota_calculations_29Quota_distribution_calculator_ca
   double *__pyx_v_counts;
   int __pyx_v_counts_idx;
   double __pyx_v_quota_counts_sum;
-  PY_LONG_LONG *__pyx_v_quota_count;
+  long *__pyx_v_quota_count;
   int __pyx_v_prev_quota_idx;
-  PY_LONG_LONG __pyx_v_prev_quota;
+  long __pyx_v_prev_quota;
   int __pyx_v_counts_quota_idx;
   double __pyx_v_val_count;
   PyArrayObject *__pyx_v_quota_probs = 0;
   PyArrayObject *__pyx_v_quota_values = 0;
+  PyObject *__pyx_v_quota_values2 = 0;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_quota_probs;
   __Pyx_Buffer __pyx_pybuffer_quota_probs;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_quota_values;
@@ -435,9 +436,9 @@ static PyObject *__pyx_f_18Quota_calculations_29Quota_distribution_calculator_ca
 /* … */
   /* function exit code */
   __pyx_L1_error:;
-  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_8);
-  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_9);
-  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_10);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_13);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_14);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_15);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_16);
   { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
     __Pyx_PyThreadState_declare
@@ -455,6 +456,7 @@ static PyObject *__pyx_f_18Quota_calculations_29Quota_distribution_calculator_ca
   __pyx_L2:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>((PyObject *)__pyx_v_quota_probs);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>((PyObject *)__pyx_v_quota_values);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_quota_values2);
   <span class='refnanny'>__Pyx_XGIVEREF</span>(__pyx_r);
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return __pyx_r;
@@ -567,7 +569,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
     }
     __pyx_v_base_dist_array = <span class='pyx_c_api'>__Pyx_PyObject_to_MemoryviewSlice_dc_double</span>(values[0], PyBUF_WRITABLE);<span class='error_goto'> if (unlikely(!__pyx_v_base_dist_array.memview)) __PYX_ERR(0, 13, __pyx_L3_error)</span>
     __pyx_v_quota_num = <span class='pyx_c_api'>__Pyx_PyInt_As_unsigned_char</span>(values[1]); if (unlikely((__pyx_v_quota_num == (unsigned char)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 14, __pyx_L3_error)</span>
-    __pyx_v_previous_quotas = <span class='pyx_c_api'>__Pyx_PyObject_to_MemoryviewSlice_dc_PY_LONG_LONG</span>(values[2], PyBUF_WRITABLE);<span class='error_goto'> if (unlikely(!__pyx_v_previous_quotas.memview)) __PYX_ERR(0, 15, __pyx_L3_error)</span>
+    __pyx_v_previous_quotas = <span class='pyx_c_api'>__Pyx_PyObject_to_MemoryviewSlice_dc_long</span>(values[2], PyBUF_WRITABLE);<span class='error_goto'> if (unlikely(!__pyx_v_previous_quotas.memview)) __PYX_ERR(0, 15, __pyx_L3_error)</span>
     __pyx_v_previous_probabilities = <span class='pyx_c_api'>__Pyx_PyObject_to_MemoryviewSlice_dc_double</span>(values[3], PyBUF_WRITABLE);<span class='error_goto'> if (unlikely(!__pyx_v_previous_probabilities.memview)) __PYX_ERR(0, 16, __pyx_L3_error)</span>
   }
   goto __pyx_L6_skip;
@@ -638,7 +640,7 @@ static PyObject *__pyx_pf_18Quota_calculations_29Quota_distribution_calculator_c
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_7); __pyx_t_7 = 0;
 </pre><pre class="cython line score-0">&#xA0;<span class="">13</span>:         <span class="n">double</span><span class="p">[::</span><span class="mf">1</span><span class="p">]</span> <span class="n">base_dist_array</span><span class="p">,</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">14</span>:         <span class="nb">unsigned</span> <span class="n">char</span> <span class="n">quota_num</span><span class="p">,</span></pre>
-<pre class="cython line score-0">&#xA0;<span class="">15</span>:         <span class="nb">long</span> <span class="nb">long</span><span class="p">[::</span><span class="mf">1</span><span class="p">]</span> <span class="n">previous_quotas</span><span class="p">,</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">15</span>:         <span class="nb">long</span><span class="p">[::</span><span class="mf">1</span><span class="p">]</span> <span class="n">previous_quotas</span><span class="p">,</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">16</span>:         <span class="n">double</span><span class="p">[::</span><span class="mf">1</span><span class="p">]</span> <span class="n">previous_probabilities</span><span class="p">):</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">17</span>: <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculates the distributions for a given quota number&quot;&quot;&quot;</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">18</span>:     <span class="c"># pre = timeit.default_timer()</span></pre>
@@ -718,7 +720,7 @@ static PyObject *__pyx_pf_18Quota_calculations_29Quota_distribution_calculator_c
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">30</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">longest</span> <span class="o">=</span> <span class="p">(</span><span class="n">previous_quotas</span><span class="p">[</span><span class="n">prev_quota_len</span> <span class="o">-</span> <span class="mf">1</span><span class="p">]</span> <span class="o">+</span></pre>
 <pre class='cython code score-0 '>  __pyx_t_4 = (__pyx_v_prev_quota_len - 1);
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">31</span>:                         <span class="n">current_quota_shape</span><span class="p">[</span><span class="mf">10000000</span> <span class="o">-</span> <span class="mf">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1</span><span class="p">)</span></pre>
-<pre class='cython code score-0 '>  __pyx_v_longest = (((*((PY_LONG_LONG *) ( /* dim=0 */ ((char *) (((PY_LONG_LONG *) __pyx_v_previous_quotas.data) + __pyx_t_4)) ))) + (__pyx_v_current_quota_shape[0x98967f])) + 1);
+<pre class='cython code score-0 '>  __pyx_v_longest = (((*((long *) ( /* dim=0 */ ((char *) (((long *) __pyx_v_previous_quotas.data) + __pyx_t_4)) ))) + (__pyx_v_current_quota_shape[0x98967f])) + 1);
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">32</span>:     <span class="k">cdef</span> <span class="kt">double</span> * <span class="nf">counts</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">double</span> <span class="o">*&gt;</span> <span class="n">malloc</span><span class="p">(</span><span class="n">longest</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">))</span></pre>
 <pre class='cython code score-0 '>  __pyx_v_counts = ((double *)malloc((__pyx_v_longest * (sizeof(double)))));
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">33</span>:     <span class="k">if</span> <span class="ow">not</span> <span class="n">counts</span><span class="p">:</span></pre>
@@ -787,9 +789,9 @@ static PyObject *__pyx_pf_18Quota_calculations_29Quota_distribution_calculator_c
       }
 </pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">38</span>:     <span class="k">cdef</span> <span class="kt">double</span> <span class="nf">quota_counts_sum</span> <span class="o">=</span> <span class="mf">0</span></pre>
 <pre class='cython code score-0 '>  __pyx_v_quota_counts_sum = 0.0;
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">39</span>:     <span class="k">cdef</span> <span class="kt">long</span> <span class="kt">long</span> * <span class="nf">quota_count</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nb">long</span> <span class="nb">long</span> <span class="o">*&gt;</span><span class="n">malloc</span><span class="p">(</span></pre>
-<pre class='cython code score-0 '>  __pyx_v_quota_count = ((PY_LONG_LONG *)malloc((__pyx_v_longest * (sizeof(PY_LONG_LONG)))));
-</pre><pre class="cython line score-0">&#xA0;<span class="">40</span>:         <span class="n">longest</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">long</span> <span class="nb">long</span><span class="p">))</span></pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">39</span>:     <span class="k">cdef</span> <span class="kt">long</span> * <span class="nf">quota_count</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nb">long</span> <span class="o">*&gt;</span><span class="n">malloc</span><span class="p">(</span></pre>
+<pre class='cython code score-0 '>  __pyx_v_quota_count = ((long *)malloc((__pyx_v_longest * (sizeof(long)))));
+</pre><pre class="cython line score-0">&#xA0;<span class="">40</span>:         <span class="n">longest</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">long</span><span class="p">))</span></pre>
 <pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">41</span>:     <span class="k">if</span> <span class="ow">not</span> <span class="n">quota_count</span><span class="p">:</span></pre>
 <pre class='cython code score-0 '>  __pyx_t_1 = (!(__pyx_v_quota_count != 0));
   if (unlikely(__pyx_t_1)) {
@@ -799,30 +801,13 @@ static PyObject *__pyx_pf_18Quota_calculations_29Quota_distribution_calculator_c
 <pre class='cython code score-5 '>    <span class='py_c_api'>PyErr_NoMemory</span>(); <span class='error_goto'>__PYX_ERR(0, 42, __pyx_L1_error)</span>
 </pre><pre class="cython line score-0">&#xA0;<span class="">43</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">44</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">prev_quota_idx</span></pre>
-<pre class="cython line score-0">&#xA0;<span class="">45</span>:     <span class="k">cdef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="nf">prev_quota</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">45</span>:     <span class="k">cdef</span> <span class="kt">long</span> <span class="nf">prev_quota</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">46</span>:     <span class="k">cdef</span> <span class="kt">int</span> <span class="nf">counts_quota_idx</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">47</span>:     <span class="k">cdef</span> <span class="kt">double</span> <span class="nf">val_count</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">48</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">49</span>:     <span class="c"># loop = timeit.default_timer()</span></pre>
 <pre class="cython line score-0">&#xA0;<span class="">50</span>:     <span class="c"># print(f&quot;Overhead-top {loop-pre}&quot;)</span></pre>
-<pre class="cython line score-17" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">51</span>:     <span class="k">print</span><span class="p">(</span><span class="n">prev_quota_len</span><span class="p">,</span> <span class="n">longest</span><span class="p">)</span></pre>
-<pre class='cython code score-17 '>  __pyx_t_8 = <span class='pyx_c_api'>__Pyx_PyInt_From_int</span>(__pyx_v_prev_quota_len);<span class='error_goto'> if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 51, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_8);
-  __pyx_t_9 = <span class='pyx_c_api'>__Pyx_PyInt_From_int</span>(__pyx_v_longest);<span class='error_goto'> if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 51, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_9);
-  __pyx_t_10 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 51, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_10);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_8);
-  if (<span class='pyx_c_api'>__Pyx_PyTuple_SET_ITEM</span>(__pyx_t_10, 0, __pyx_t_8)) <span class='error_goto'>__PYX_ERR(0, 51, __pyx_L1_error)</span>;
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_9);
-  if (<span class='pyx_c_api'>__Pyx_PyTuple_SET_ITEM</span>(__pyx_t_10, 1, __pyx_t_9)) <span class='error_goto'>__PYX_ERR(0, 51, __pyx_L1_error)</span>;
-  __pyx_t_8 = 0;
-  __pyx_t_9 = 0;
-  __pyx_t_9 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(__pyx_builtin_print, __pyx_t_10, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 51, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_9);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_10); __pyx_t_10 = 0;
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_9); __pyx_t_9 = 0;
-</pre><pre class="cython line score-4" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">52</span>:     <span class="k">for</span> <span class="n">prev_quota_idx</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">prev_quota_len</span><span class="p">,</span> <span class="k">nogil</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span></pre>
+<pre class="cython line score-4" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">51</span>:     <span class="k">for</span> <span class="n">prev_quota_idx</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">prev_quota_len</span><span class="p">,</span> <span class="k">nogil</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span></pre>
 <pre class='cython code score-4 '>  {
       #ifdef WITH_THREAD
       PyThreadState *_save;
@@ -856,7 +841,7 @@ static PyObject *__pyx_pf_18Quota_calculations_29Quota_distribution_calculator_c
                             __pyx_v_counts_idx = ((int)0xbad0bad0);
                             __pyx_v_counts_quota_idx = ((int)0xbad0bad0);
                             __pyx_v_curr_quota_idx = ((int)0xbad0bad0);
-                            __pyx_v_prev_quota = ((PY_LONG_LONG)0xbad0bad0);
+                            __pyx_v_prev_quota = ((long)0xbad0bad0);
                             __pyx_v_val_count = ((double)__PYX_NAN());
 /* … */
       /*finally:*/ {
@@ -870,14 +855,14 @@ static PyObject *__pyx_pf_18Quota_calculations_29Quota_distribution_calculator_c
         __pyx_L26:;
       }
   }
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">53</span>:         <span class="n">prev_quota</span> <span class="o">=</span> <span class="n">previous_quotas</span><span class="p">[</span><span class="n">prev_quota_idx</span><span class="p">]</span></pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">52</span>:         <span class="n">prev_quota</span> <span class="o">=</span> <span class="n">previous_quotas</span><span class="p">[</span><span class="n">prev_quota_idx</span><span class="p">]</span></pre>
 <pre class='cython code score-0 '>                            __pyx_t_4 = __pyx_v_prev_quota_idx;
-                            __pyx_v_prev_quota = (*((PY_LONG_LONG *) ( /* dim=0 */ ((char *) (((PY_LONG_LONG *) __pyx_v_previous_quotas.data) + __pyx_t_4)) )));
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">54</span>:         <span class="k">for</span> <span class="n">counts_idx</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">longest</span><span class="p">):</span></pre>
-<pre class='cython code score-0 '>                            __pyx_t_11 = __pyx_v_longest;
+                            __pyx_v_prev_quota = (*((long *) ( /* dim=0 */ ((char *) (((long *) __pyx_v_previous_quotas.data) + __pyx_t_4)) )));
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">53</span>:         <span class="k">for</span> <span class="n">counts_idx</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">longest</span><span class="p">):</span></pre>
+<pre class='cython code score-0 '>                            __pyx_t_8 = __pyx_v_longest;
                             {
-                                __pyx_t_13 = (__pyx_t_11 - 0 + 1 - 1/abs(1)) / 1;
-                                if (__pyx_t_13 &gt; 0)
+                                __pyx_t_10 = (__pyx_t_8 - 0 + 1 - 1/abs(1)) / 1;
+                                if (__pyx_t_10 &gt; 0)
                                 {
                                     #if 0
                                     #pragma omp parallel
@@ -886,17 +871,17 @@ static PyObject *__pyx_pf_18Quota_calculations_29Quota_distribution_calculator_c
                                         #if 0
                                         #pragma omp for firstprivate(__pyx_v_counts_idx) lastprivate(__pyx_v_counts_idx)
                                         #endif /* _OPENMP */
-                                        for (__pyx_t_12 = 0; __pyx_t_12 &lt; __pyx_t_13; __pyx_t_12++){
+                                        for (__pyx_t_9 = 0; __pyx_t_9 &lt; __pyx_t_10; __pyx_t_9++){
                                             {
-                                                __pyx_v_counts_idx = (int)(0 + 1 * __pyx_t_12);
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">55</span>:             <span class="n">quota_count</span><span class="p">[</span><span class="n">counts_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0</span></pre>
+                                                __pyx_v_counts_idx = (int)(0 + 1 * __pyx_t_9);
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">54</span>:             <span class="n">quota_count</span><span class="p">[</span><span class="n">counts_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0</span></pre>
 <pre class='cython code score-0 '>                                                (__pyx_v_quota_count[__pyx_v_counts_idx]) = 0;
                                             }
                                         }
                                     }
                                 }
                             }
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">56</span>:         <span class="k">for</span> <span class="n">curr_quota_idx</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="mf">10000000</span><span class="p">):</span></pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">55</span>:         <span class="k">for</span> <span class="n">curr_quota_idx</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="mf">10000000</span><span class="p">):</span></pre>
 <pre class='cython code score-0 '>                            {
                                 __pyx_t_2 = (0x989680 - 0 + 1 - 1/abs(1)) / 1;
                                 if (__pyx_t_2 &gt; 0)
@@ -911,28 +896,28 @@ static PyObject *__pyx_pf_18Quota_calculations_29Quota_distribution_calculator_c
                                         for (__pyx_t_3 = 0; __pyx_t_3 &lt; __pyx_t_2; __pyx_t_3++){
                                             {
                                                 __pyx_v_curr_quota_idx = (int)(0 + 1 * __pyx_t_3);
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">57</span>:             <span class="n">quota_count</span><span class="p">[</span></pre>
-<pre class='cython code score-0 '>                                                (__pyx_v_quota_count[__pyx_t_14]) = ((__pyx_v_quota_count[__pyx_t_14]) + 1);
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">56</span>:             <span class="n">quota_count</span><span class="p">[</span></pre>
+<pre class='cython code score-0 '>                                                (__pyx_v_quota_count[__pyx_t_11]) = ((__pyx_v_quota_count[__pyx_t_11]) + 1);
                                             }
                                         }
                                     }
                                 }
                             }
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">58</span>:                 <span class="n">current_quota_shape</span><span class="p">[</span><span class="n">curr_quota_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">prev_quota</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1</span></pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">57</span>:                 <span class="n">current_quota_shape</span><span class="p">[</span><span class="n">curr_quota_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">prev_quota</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1</span></pre>
 <pre class='cython code score-0 '>
-                                                /* "Quota_calculations/Quota_distribution_calculator.pyx":58
+                                                /* "Quota_calculations/Quota_distribution_calculator.pyx":57
  *         for curr_quota_idx in prange(10000000):
  *             quota_count[
  *                 current_quota_shape[curr_quota_idx] + prev_quota] += 1             # &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
  *         for counts_quota_idx in prange(longest):
  *             val_count = (quota_count[counts_quota_idx] *
  */
-                                                __pyx_t_14 = ((__pyx_v_current_quota_shape[__pyx_v_curr_quota_idx]) + __pyx_v_prev_quota);
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">59</span>:         <span class="k">for</span> <span class="n">counts_quota_idx</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">longest</span><span class="p">):</span></pre>
-<pre class='cython code score-0 '>                            __pyx_t_13 = __pyx_v_longest;
+                                                __pyx_t_11 = ((__pyx_v_current_quota_shape[__pyx_v_curr_quota_idx]) + __pyx_v_prev_quota);
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">58</span>:         <span class="k">for</span> <span class="n">counts_quota_idx</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">longest</span><span class="p">):</span></pre>
+<pre class='cython code score-0 '>                            __pyx_t_10 = __pyx_v_longest;
                             {
-                                __pyx_t_11 = (__pyx_t_13 - 0 + 1 - 1/abs(1)) / 1;
-                                if (__pyx_t_11 &gt; 0)
+                                __pyx_t_8 = (__pyx_t_10 - 0 + 1 - 1/abs(1)) / 1;
+                                if (__pyx_t_8 &gt; 0)
                                 {
                                     #if 0
                                     #pragma omp parallel
@@ -941,19 +926,19 @@ static PyObject *__pyx_pf_18Quota_calculations_29Quota_distribution_calculator_c
                                         #if 0
                                         #pragma omp for firstprivate(__pyx_v_counts_quota_idx) lastprivate(__pyx_v_counts_quota_idx) reduction(+:__pyx_v_quota_counts_sum) lastprivate(__pyx_v_val_count)
                                         #endif /* _OPENMP */
-                                        for (__pyx_t_12 = 0; __pyx_t_12 &lt; __pyx_t_11; __pyx_t_12++){
+                                        for (__pyx_t_9 = 0; __pyx_t_9 &lt; __pyx_t_8; __pyx_t_9++){
                                             {
-                                                __pyx_v_counts_quota_idx = (int)(0 + 1 * __pyx_t_12);
+                                                __pyx_v_counts_quota_idx = (int)(0 + 1 * __pyx_t_9);
                                                 /* Initialize private variables to invalid values */
                                                 __pyx_v_val_count = ((double)__PYX_NAN());
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">60</span>:             <span class="n">val_count</span> <span class="o">=</span> <span class="p">(</span><span class="n">quota_count</span><span class="p">[</span><span class="n">counts_quota_idx</span><span class="p">]</span> <span class="o">*</span></pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">59</span>:             <span class="n">val_count</span> <span class="o">=</span> <span class="p">(</span><span class="n">quota_count</span><span class="p">[</span><span class="n">counts_quota_idx</span><span class="p">]</span> <span class="o">*</span></pre>
 <pre class='cython code score-0 '>                                                __pyx_v_val_count = ((__pyx_v_quota_count[__pyx_v_counts_quota_idx]) * (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_previous_probabilities.data) + __pyx_t_4)) ))));
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">61</span>:                                        <span class="n">previous_probabilities</span><span class="p">[</span><span class="n">prev_quota_idx</span><span class="p">])</span></pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">60</span>:                                        <span class="n">previous_probabilities</span><span class="p">[</span><span class="n">prev_quota_idx</span><span class="p">])</span></pre>
 <pre class='cython code score-0 '>                                                __pyx_t_4 = __pyx_v_prev_quota_idx;
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">62</span>:             <span class="n">counts</span><span class="p">[</span><span class="n">counts_quota_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">val_count</span></pre>
-<pre class='cython code score-0 '>                                                __pyx_t_15 = __pyx_v_counts_quota_idx;
-                                                (__pyx_v_counts[__pyx_t_15]) = ((__pyx_v_counts[__pyx_t_15]) + __pyx_v_val_count);
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">63</span>:             <span class="n">quota_counts_sum</span> <span class="o">+=</span> <span class="n">val_count</span></pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">61</span>:             <span class="n">counts</span><span class="p">[</span><span class="n">counts_quota_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">val_count</span></pre>
+<pre class='cython code score-0 '>                                                __pyx_t_12 = __pyx_v_counts_quota_idx;
+                                                (__pyx_v_counts[__pyx_t_12]) = ((__pyx_v_counts[__pyx_t_12]) + __pyx_v_val_count);
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">62</span>:             <span class="n">quota_counts_sum</span> <span class="o">+=</span> <span class="n">val_count</span></pre>
 <pre class='cython code score-0 '>                                                __pyx_v_quota_counts_sum = (__pyx_v_quota_counts_sum + __pyx_v_val_count);
                                             }
                                         }
@@ -972,127 +957,160 @@ static PyObject *__pyx_pf_18Quota_calculations_29Quota_distribution_calculator_c
             #define unlikely(x) __builtin_expect(!!(x), 0)
         #endif
       }
-</pre><pre class="cython line score-0">&#xA0;<span class="">64</span>: </pre>
-<pre class="cython line score-0">&#xA0;<span class="">65</span>:     <span class="c"># pre2 = timeit.default_timer()</span></pre>
-<pre class="cython line score-0">&#xA0;<span class="">66</span>:     <span class="c"># print(f&quot;Loop {pre2-loop}&quot;)</span></pre>
-<pre class="cython line score-0">&#xA0;<span class="">67</span>: </pre>
-<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">68</span>:     <span class="n">free</span><span class="p">(</span><span class="n">current_quota_shape</span><span class="p">)</span></pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">63</span>: </pre>
+<pre class="cython line score-0">&#xA0;<span class="">64</span>:     <span class="c"># pre2 = timeit.default_timer()</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">65</span>:     <span class="c"># print(f&quot;Loop {pre2-loop}&quot;)</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">66</span>: </pre>
+<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">67</span>:     <span class="n">free</span><span class="p">(</span><span class="n">current_quota_shape</span><span class="p">)</span></pre>
 <pre class='cython code score-0 '>  free(__pyx_v_current_quota_shape);
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">69</span>:     <span class="n">free</span><span class="p">(</span><span class="n">quota_count</span><span class="p">)</span></pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">68</span>:     <span class="n">free</span><span class="p">(</span><span class="n">quota_count</span><span class="p">)</span></pre>
 <pre class='cython code score-0 '>  free(__pyx_v_quota_count);
-</pre><pre class="cython line score-22" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">70</span>:     <span class="k">cdef</span> <span class="kt">cnp</span>.<span class="kt">ndarray</span>[<span class="kt">cnp</span>.<span class="nf">float64_t</span><span class="p">,</span> ] <span class="nf">quota_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span></pre>
-<pre class='cython code score-22 '>  <span class='pyx_c_api'>__Pyx_GetModuleGlobalName</span>(__pyx_t_9, __pyx_n_s_np);<span class='error_goto'> if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 70, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_9);
-  __pyx_t_10 = <span class='pyx_c_api'>__Pyx_PyObject_GetAttrStr</span>(__pyx_t_9, __pyx_n_s_empty);<span class='error_goto'> if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 70, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_10);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_9); __pyx_t_9 = 0;
+</pre><pre class="cython line score-22" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">69</span>:     <span class="k">cdef</span> <span class="kt">cnp</span>.<span class="kt">ndarray</span>[<span class="kt">cnp</span>.<span class="nf">float64_t</span><span class="p">,</span> ] <span class="nf">quota_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span></pre>
+<pre class='cython code score-22 '>  <span class='pyx_c_api'>__Pyx_GetModuleGlobalName</span>(__pyx_t_13, __pyx_n_s_np);<span class='error_goto'> if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 69, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_13);
+  __pyx_t_14 = <span class='pyx_c_api'>__Pyx_PyObject_GetAttrStr</span>(__pyx_t_13, __pyx_n_s_empty);<span class='error_goto'> if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 69, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_14);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_13); __pyx_t_13 = 0;
 /* … */
-  __pyx_t_9 = <span class='py_c_api'>PyTuple_New</span>(1);<span class='error_goto'> if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 70, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_9);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_8);
-  if (<span class='pyx_c_api'>__Pyx_PyTuple_SET_ITEM</span>(__pyx_t_9, 0, __pyx_t_8)) <span class='error_goto'>__PYX_ERR(0, 70, __pyx_L1_error)</span>;
-  __pyx_t_8 = 0;
+  __pyx_t_13 = <span class='py_c_api'>PyTuple_New</span>(1);<span class='error_goto'> if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 69, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_13);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_15);
+  if (<span class='pyx_c_api'>__Pyx_PyTuple_SET_ITEM</span>(__pyx_t_13, 0, __pyx_t_15)) <span class='error_goto'>__PYX_ERR(0, 69, __pyx_L1_error)</span>;
+  __pyx_t_15 = 0;
 /* … */
-  __pyx_t_16 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(__pyx_t_10, __pyx_t_9, __pyx_t_8);<span class='error_goto'> if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 70, __pyx_L1_error)</span>
+  __pyx_t_16 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(__pyx_t_14, __pyx_t_13, __pyx_t_15);<span class='error_goto'> if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 69, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_16);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_10); __pyx_t_10 = 0;
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_9); __pyx_t_9 = 0;
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_8); __pyx_t_8 = 0;
-  if (!(likely(((__pyx_t_16) == Py_None) || likely(<span class='pyx_c_api'>__Pyx_TypeTest</span>(__pyx_t_16, __pyx_ptype_5numpy_ndarray))))) <span class='error_goto'>__PYX_ERR(0, 70, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_14); __pyx_t_14 = 0;
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_13); __pyx_t_13 = 0;
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_15); __pyx_t_15 = 0;
+  if (!(likely(((__pyx_t_16) == Py_None) || likely(<span class='pyx_c_api'>__Pyx_TypeTest</span>(__pyx_t_16, __pyx_ptype_5numpy_ndarray))))) <span class='error_goto'>__PYX_ERR(0, 69, __pyx_L1_error)</span>
   __pyx_t_17 = ((PyArrayObject *)__pyx_t_16);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_quota_probs.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_t_17, &amp;__Pyx_TypeInfo_nn___pyx_t_5numpy_float64_t, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_quota_probs = ((PyArrayObject *)Py_None); <span class='pyx_macro_api'>__Pyx_INCREF</span>(Py_None); __pyx_pybuffernd_quota_probs.rcbuffer-&gt;pybuffer.buf = NULL;
-      <span class='error_goto'>__PYX_ERR(0, 70, __pyx_L1_error)</span>
+      <span class='error_goto'>__PYX_ERR(0, 69, __pyx_L1_error)</span>
     } else {__pyx_pybuffernd_quota_probs.diminfo[0].strides = __pyx_pybuffernd_quota_probs.rcbuffer-&gt;pybuffer.strides[0]; __pyx_pybuffernd_quota_probs.diminfo[0].shape = __pyx_pybuffernd_quota_probs.rcbuffer-&gt;pybuffer.shape[0];
     }
   }
   __pyx_t_17 = 0;
   __pyx_v_quota_probs = ((PyArrayObject *)__pyx_t_16);
   __pyx_t_16 = 0;
-</pre><pre class="cython line score-16" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">71</span>:         <span class="p">(</span><span class="n">longest</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span></pre>
-<pre class='cython code score-16 '>  __pyx_t_9 = <span class='pyx_c_api'>__Pyx_PyInt_From_int</span>(__pyx_v_longest);<span class='error_goto'> if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 71, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_9);
-  __pyx_t_8 = <span class='py_c_api'>PyTuple_New</span>(1);<span class='error_goto'> if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 71, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_8);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_9);
-  if (<span class='pyx_c_api'>__Pyx_PyTuple_SET_ITEM</span>(__pyx_t_8, 0, __pyx_t_9)) <span class='error_goto'>__PYX_ERR(0, 71, __pyx_L1_error)</span>;
-  __pyx_t_9 = 0;
+</pre><pre class="cython line score-16" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">70</span>:         <span class="p">(</span><span class="n">longest</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span></pre>
+<pre class='cython code score-16 '>  __pyx_t_13 = <span class='pyx_c_api'>__Pyx_PyInt_From_int</span>(__pyx_v_longest);<span class='error_goto'> if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 70, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_13);
+  __pyx_t_15 = <span class='py_c_api'>PyTuple_New</span>(1);<span class='error_goto'> if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 70, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_15);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_13);
+  if (<span class='pyx_c_api'>__Pyx_PyTuple_SET_ITEM</span>(__pyx_t_15, 0, __pyx_t_13)) <span class='error_goto'>__PYX_ERR(0, 70, __pyx_L1_error)</span>;
+  __pyx_t_13 = 0;
 /* … */
-  __pyx_t_8 = <span class='pyx_c_api'>__Pyx_PyDict_NewPresized</span>(1);<span class='error_goto'> if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 71, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_8);
-  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_t_8, __pyx_n_s_dtype, ((PyObject *)(&amp;PyFloat_Type))) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 71, __pyx_L1_error)</span>
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">72</span>:     <span class="k">for</span> <span class="n">counts_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">longest</span><span class="p">):</span></pre>
+  __pyx_t_15 = <span class='pyx_c_api'>__Pyx_PyDict_NewPresized</span>(1);<span class='error_goto'> if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 70, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_15);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_t_15, __pyx_n_s_dtype, ((PyObject *)(&amp;PyFloat_Type))) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 70, __pyx_L1_error)</span>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">71</span>:     <span class="k">for</span> <span class="n">counts_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">longest</span><span class="p">):</span></pre>
 <pre class='cython code score-0 '>  __pyx_t_5 = __pyx_v_longest;
   __pyx_t_6 = __pyx_t_5;
   for (__pyx_t_7 = 0; __pyx_t_7 &lt; __pyx_t_6; __pyx_t_7+=1) {
     __pyx_v_counts_idx = __pyx_t_7;
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">73</span>:         <span class="n">quota_probs</span><span class="p">[</span><span class="n">counts_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="n">counts_idx</span><span class="p">]</span> <span class="o">/</span> <span class="n">quota_counts_sum</span></pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">72</span>:         <span class="n">quota_probs</span><span class="p">[</span><span class="n">counts_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="n">counts_idx</span><span class="p">]</span> <span class="o">/</span> <span class="n">quota_counts_sum</span></pre>
 <pre class='cython code score-0 '>    __pyx_t_4 = __pyx_v_counts_idx;
     *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_float64_t *, __pyx_pybuffernd_quota_probs.rcbuffer-&gt;pybuffer.buf, __pyx_t_4, __pyx_pybuffernd_quota_probs.diminfo[0].strides) = ((__pyx_v_counts[__pyx_v_counts_idx]) / __pyx_v_quota_counts_sum);
   }
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">74</span>:     <span class="n">free</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span></pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">73</span>:     <span class="n">free</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span></pre>
 <pre class='cython code score-0 '>  free(__pyx_v_counts);
-</pre><pre class="cython line score-27" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">75</span>:     <span class="k">cdef</span> <span class="kt">cnp</span>.<span class="kt">ndarray</span>[<span class="nf">Py_ssize_t</span><span class="p">,</span> ] <span class="nf">quota_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">quota_probs</span><span class="p">)[</span><span class="mf">0</span><span class="p">]</span></pre>
-<pre class='cython code score-27 '>  <span class='pyx_c_api'>__Pyx_GetModuleGlobalName</span>(__pyx_t_8, __pyx_n_s_np);<span class='error_goto'> if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 75, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_8);
-  __pyx_t_9 = <span class='pyx_c_api'>__Pyx_PyObject_GetAttrStr</span>(__pyx_t_8, __pyx_n_s_nonzero);<span class='error_goto'> if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 75, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_9);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = NULL;
+</pre><pre class="cython line score-27" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">74</span>:     <span class="k">cdef</span> <span class="kt">cnp</span>.<span class="kt">ndarray</span>[<span class="kt">long</span> <span class="nf">long</span><span class="p">,</span> ] <span class="nf">quota_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">quota_probs</span><span class="p">)[</span><span class="mf">0</span><span class="p">]</span></pre>
+<pre class='cython code score-27 '>  <span class='pyx_c_api'>__Pyx_GetModuleGlobalName</span>(__pyx_t_15, __pyx_n_s_np);<span class='error_goto'> if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 74, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_15);
+  __pyx_t_13 = <span class='pyx_c_api'>__Pyx_PyObject_GetAttrStr</span>(__pyx_t_15, __pyx_n_s_nonzero);<span class='error_goto'> if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 74, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_13);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_15); __pyx_t_15 = 0;
+  __pyx_t_15 = NULL;
   __pyx_t_5 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(<span class='py_c_api'>PyMethod_Check</span>(__pyx_t_9))) {
-    __pyx_t_8 = <span class='py_macro_api'>PyMethod_GET_SELF</span>(__pyx_t_9);
-    if (likely(__pyx_t_8)) {
-      PyObject* function = <span class='py_macro_api'>PyMethod_GET_FUNCTION</span>(__pyx_t_9);
-      <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_8);
+  if (unlikely(<span class='py_c_api'>PyMethod_Check</span>(__pyx_t_13))) {
+    __pyx_t_15 = <span class='py_macro_api'>PyMethod_GET_SELF</span>(__pyx_t_13);
+    if (likely(__pyx_t_15)) {
+      PyObject* function = <span class='py_macro_api'>PyMethod_GET_FUNCTION</span>(__pyx_t_13);
+      <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_15);
       <span class='pyx_macro_api'>__Pyx_INCREF</span>(function);
-      <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_t_9, function);
+      <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_t_13, function);
       __pyx_t_5 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_8, ((PyObject *)__pyx_v_quota_probs)};
-    __pyx_t_16 = <span class='pyx_c_api'>__Pyx_PyObject_FastCall</span>(__pyx_t_9, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
-    <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_16)) <span class='error_goto'>__PYX_ERR(0, 75, __pyx_L1_error)</span>
+    PyObject *__pyx_callargs[2] = {__pyx_t_15, ((PyObject *)__pyx_v_quota_probs)};
+    __pyx_t_16 = <span class='pyx_c_api'>__Pyx_PyObject_FastCall</span>(__pyx_t_13, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+    <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_15); __pyx_t_15 = 0;
+    if (unlikely(!__pyx_t_16)) <span class='error_goto'>__PYX_ERR(0, 74, __pyx_L1_error)</span>
     <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_16);
-    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_9); __pyx_t_9 = 0;
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_13); __pyx_t_13 = 0;
   }
-  __pyx_t_9 = <span class='pyx_c_api'>__Pyx_GetItemInt</span>(__pyx_t_16, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0);<span class='error_goto'> if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 75, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_9);
+  __pyx_t_13 = <span class='pyx_c_api'>__Pyx_GetItemInt</span>(__pyx_t_16, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0);<span class='error_goto'> if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 74, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_13);
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_16); __pyx_t_16 = 0;
-  if (!(likely(((__pyx_t_9) == Py_None) || likely(<span class='pyx_c_api'>__Pyx_TypeTest</span>(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) <span class='error_goto'>__PYX_ERR(0, 75, __pyx_L1_error)</span>
-  __pyx_t_18 = ((PyArrayObject *)__pyx_t_9);
+  if (!(likely(((__pyx_t_13) == Py_None) || likely(<span class='pyx_c_api'>__Pyx_TypeTest</span>(__pyx_t_13, __pyx_ptype_5numpy_ndarray))))) <span class='error_goto'>__PYX_ERR(0, 74, __pyx_L1_error)</span>
+  __pyx_t_18 = ((PyArrayObject *)__pyx_t_13);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_quota_values.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_t_18, &amp;__Pyx_TypeInfo_Py_ssize_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
+    if (unlikely(<span class='pyx_c_api'>__Pyx_GetBufferAndValidate</span>(&amp;__pyx_pybuffernd_quota_values.rcbuffer-&gt;pybuffer, (PyObject*)__pyx_t_18, &amp;__Pyx_TypeInfo_PY_LONG_LONG, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_quota_values = ((PyArrayObject *)Py_None); <span class='pyx_macro_api'>__Pyx_INCREF</span>(Py_None); __pyx_pybuffernd_quota_values.rcbuffer-&gt;pybuffer.buf = NULL;
-      <span class='error_goto'>__PYX_ERR(0, 75, __pyx_L1_error)</span>
+      <span class='error_goto'>__PYX_ERR(0, 74, __pyx_L1_error)</span>
     } else {__pyx_pybuffernd_quota_values.diminfo[0].strides = __pyx_pybuffernd_quota_values.rcbuffer-&gt;pybuffer.strides[0]; __pyx_pybuffernd_quota_values.diminfo[0].shape = __pyx_pybuffernd_quota_values.rcbuffer-&gt;pybuffer.shape[0];
     }
   }
   __pyx_t_18 = 0;
-  __pyx_v_quota_values = ((PyArrayObject *)__pyx_t_9);
-  __pyx_t_9 = 0;
-</pre><pre class="cython line score-19" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">76</span>:     <span class="k">return</span> <span class="n">quota_values</span><span class="p">,</span> <span class="n">quota_probs</span><span class="p">[</span><span class="n">quota_probs</span> <span class="o">!=</span> <span class="mf">0</span><span class="p">]</span></pre>
-<pre class='cython code score-19 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
-  __pyx_t_9 = <span class='py_c_api'>PyObject_RichCompare</span>(((PyObject *)__pyx_v_quota_probs), __pyx_int_0, Py_NE); <span class='refnanny'>__Pyx_XGOTREF</span>(__pyx_t_9);<span class='error_goto'> if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 76, __pyx_L1_error)</span>
-  __pyx_t_16 = <span class='pyx_c_api'>__Pyx_PyObject_GetItem</span>(((PyObject *)__pyx_v_quota_probs), __pyx_t_9);<span class='error_goto'> if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 76, __pyx_L1_error)</span>
+  __pyx_v_quota_values = ((PyArrayObject *)__pyx_t_13);
+  __pyx_t_13 = 0;
+</pre><pre class="cython line score-22" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">75</span>:     <span class="k">cdef</span> <span class="nf">quota_values2</span> <span class="o">=</span> <span class="n">quota_values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span></pre>
+<pre class='cython code score-22 '>  __pyx_t_16 = <span class='pyx_c_api'>__Pyx_PyObject_GetAttrStr</span>(((PyObject *)__pyx_v_quota_values), __pyx_n_s_astype);<span class='error_goto'> if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 75, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_16);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_9); __pyx_t_9 = 0;
-  __pyx_t_9 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 76, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_9);
-  <span class='pyx_macro_api'>__Pyx_INCREF</span>((PyObject *)__pyx_v_quota_values);
-  <span class='refnanny'>__Pyx_GIVEREF</span>((PyObject *)__pyx_v_quota_values);
-  if (<span class='pyx_c_api'>__Pyx_PyTuple_SET_ITEM</span>(__pyx_t_9, 0, ((PyObject *)__pyx_v_quota_values))) <span class='error_goto'>__PYX_ERR(0, 76, __pyx_L1_error)</span>;
+  <span class='pyx_c_api'>__Pyx_GetModuleGlobalName</span>(__pyx_t_15, __pyx_n_s_np);<span class='error_goto'> if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 75, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_15);
+  __pyx_t_14 = <span class='pyx_c_api'>__Pyx_PyObject_GetAttrStr</span>(__pyx_t_15, __pyx_n_s_int32);<span class='error_goto'> if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 75, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_14);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_15); __pyx_t_15 = 0;
+  __pyx_t_15 = NULL;
+  __pyx_t_5 = 0;
+  #if CYTHON_UNPACK_METHODS
+  if (likely(<span class='py_c_api'>PyMethod_Check</span>(__pyx_t_16))) {
+    __pyx_t_15 = <span class='py_macro_api'>PyMethod_GET_SELF</span>(__pyx_t_16);
+    if (likely(__pyx_t_15)) {
+      PyObject* function = <span class='py_macro_api'>PyMethod_GET_FUNCTION</span>(__pyx_t_16);
+      <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_15);
+      <span class='pyx_macro_api'>__Pyx_INCREF</span>(function);
+      <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_t_16, function);
+      __pyx_t_5 = 1;
+    }
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_15, __pyx_t_14};
+    __pyx_t_13 = <span class='pyx_c_api'>__Pyx_PyObject_FastCall</span>(__pyx_t_16, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+    <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_15); __pyx_t_15 = 0;
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_14); __pyx_t_14 = 0;
+    if (unlikely(!__pyx_t_13)) <span class='error_goto'>__PYX_ERR(0, 75, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_13);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_16); __pyx_t_16 = 0;
+  }
+  __pyx_v_quota_values2 = __pyx_t_13;
+  __pyx_t_13 = 0;
+</pre><pre class="cython line score-19" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">76</span>:     <span class="k">return</span> <span class="n">quota_values2</span><span class="p">,</span> <span class="n">quota_probs</span><span class="p">[</span><span class="n">quota_probs</span> <span class="o">!=</span> <span class="mf">0</span><span class="p">]</span></pre>
+<pre class='cython code score-19 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
+  __pyx_t_13 = <span class='py_c_api'>PyObject_RichCompare</span>(((PyObject *)__pyx_v_quota_probs), __pyx_int_0, Py_NE); <span class='refnanny'>__Pyx_XGOTREF</span>(__pyx_t_13);<span class='error_goto'> if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 76, __pyx_L1_error)</span>
+  __pyx_t_16 = <span class='pyx_c_api'>__Pyx_PyObject_GetItem</span>(((PyObject *)__pyx_v_quota_probs), __pyx_t_13);<span class='error_goto'> if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 76, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_16);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_13); __pyx_t_13 = 0;
+  __pyx_t_13 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 76, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_13);
+  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_quota_values2);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_quota_values2);
+  if (<span class='pyx_c_api'>__Pyx_PyTuple_SET_ITEM</span>(__pyx_t_13, 0, __pyx_v_quota_values2)) <span class='error_goto'>__PYX_ERR(0, 76, __pyx_L1_error)</span>;
   <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_16);
-  if (<span class='pyx_c_api'>__Pyx_PyTuple_SET_ITEM</span>(__pyx_t_9, 1, __pyx_t_16)) <span class='error_goto'>__PYX_ERR(0, 76, __pyx_L1_error)</span>;
+  if (<span class='pyx_c_api'>__Pyx_PyTuple_SET_ITEM</span>(__pyx_t_13, 1, __pyx_t_16)) <span class='error_goto'>__PYX_ERR(0, 76, __pyx_L1_error)</span>;
   __pyx_t_16 = 0;
-  __pyx_r = __pyx_t_9;
-  __pyx_t_9 = 0;
+  __pyx_r = __pyx_t_13;
+  __pyx_t_13 = 0;
   goto __pyx_L0;
 </pre></div></body></html>
