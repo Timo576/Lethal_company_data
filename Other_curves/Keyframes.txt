@@ -1,0 +1,33 @@
+enemySpawnChanceThroughoutDay:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0015411377
+      value: -3
+      inSlope: 19.556997
+      outSlope: 19.556997
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.11385709
+    - serializedVersion: 3
+      time: 0.75938845
+      value: 4.9730015
+      inSlope: 2.616315
+      outSlope: 2.616315
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33244476
+      outWeight: 0.5360636
+    - serializedVersion: 3
+      time: 1
+      value: 15
+      inSlope: 35.604027
+      outSlope: 35.604027
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.04912584
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
