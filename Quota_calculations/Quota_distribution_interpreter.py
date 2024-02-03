@@ -114,7 +114,7 @@ def many_plots_and_averages():
     pre = timeit.default_timer()
     base_dist_array: float_array = np.load(
         "saved_arrays/quota_test_monte.npy")
-    save_multiple_distributions(base_dist_array, 15, 15)
+    save_multiple_distributions(base_dist_array, 22, 41)
     print(f"Time taken: {timeit.default_timer() - pre:.0f} seconds")
     process_quota_distributions()
 
