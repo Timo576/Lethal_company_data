@@ -36,38 +36,49 @@ def save_multiple_distributions(
     quota_distribution: tuple[int_array, float_array]
     quota_distribution = (calculate_distributions(
         base_dist_array, 1, np.array([130], dtype=np.longlong),
-        np.array([1.0])))
-    pd.to_pickle(quota_distribution, f"saved_arrays/quota_1.pkl")
-    print("Quota 1 done")
-    for quota_num in range(starting_quota, upper_quota + 1):  # quota_num is +1
-        pickled_quota: tuple[int_array, float_array] = pd.read_pickle(
+        np.array([130], dtype=np.longlong),
+        np.array([1.0], dtype=np.double)))
+    pd.to_pickle(quota_distribution, f"saved_arrays/quota_2.pkl")
+    print("Quota 2 done")
+    for quota_num in range(starting_quota, upper_quota + 1):
+        pickled_quota = pd.read_pickle(
             f"saved_arrays/quota_{quota_num - 1}.pkl")
         prev_quotas: int_array
         prev_probabilities: float_array
-        prev_quotas, prev_probabilities = pickled_quota
+        prev_quotas, cumulative_quotas, prev_probabilities = pickled_quota
         quota_distribution = (calculate_distributions(
-            base_dist_array, quota_num, prev_quotas, prev_probabilities))
+            base_dist_array, quota_num, prev_quotas, cumulative_quotas,
+            prev_probabilities))
         pd.to_pickle(quota_distribution,
                      f"saved_arrays/quota_{quota_num}.pkl")
         print(f"Quota {quota_num} done")
 
 
 def find_stats(
-        quota_record_list: list[tuple[int_array, float_array]]) -> None:
+        quota_record_list) -> None:
     """Finds the mean, median and mode for a quotas distribution"""
     quota_num: int
-    quota_dist_info: tuple[int_array, float_array]
     for quota_num, quota_dist_info in enumerate(quota_record_list):
-        mode_quota: int = quota_dist_info[0][quota_dist_info[1].argmax()]
-        cumulative_sum: pd.Series = pd.Series(quota_dist_info[1]).cumsum()
+        mode_quota: int = quota_dist_info[0][quota_dist_info[2].argmax()]
+        cumulative_sum: pd.Series = pd.Series(quota_dist_info[2]).cumsum()
         median_quota: int = quota_dist_info[0][(cumulative_sum >= 0.5)][0]
         mean_quota: float = np.average(quota_dist_info[0],
-                                       weights=quota_dist_info[1])
+                                       weights=quota_dist_info[2])
         min_quota: int = quota_dist_info[0][0]
         max_quota: int = quota_dist_info[0][-1]
+        mode_quota_cum: int = quota_dist_info[1][quota_dist_info[2].argmax()]
+        cumulative_sum_cum: pd.Series = pd.Series(quota_dist_info[2]).cumsum()
+        median_quota_cum = quota_dist_info[1][(cumulative_sum_cum >= 0.5)][0]
+        mean_quota_cum: float = np.average(quota_dist_info[1],
+                                           weights=quota_dist_info[2])
+        min_quota_cum: int = quota_dist_info[1][0]
+        max_quota_cum: int = quota_dist_info[1][-1]
         print(f"Quota {quota_num + 1} mean: {mean_quota:.7f},"
               f"median: {median_quota:.0f}, mode: {mode_quota:.0f}, "
               f"min: {min_quota}, max: {max_quota}")
+        print(f"Cumulative quota {quota_num + 1} mean: {mean_quota_cum:.7f},"
+              f"median: {median_quota_cum:.0f}, mode: {mode_quota_cum:.0f}, "
+              f"min: {min_quota_cum}, max: {max_quota_cum}")
 
 
 def plot_bar_dist(
@@ -76,15 +87,19 @@ def plot_bar_dist(
     quota_num: int
     quota_dist_info: tuple[int_array, float_array]
     for quota_num, quota_dist_info in enumerate(quota_record_list):
-        plt.bar(quota_dist_info[0], quota_dist_info[1])
-        plt.title(f"Quota {quota_num + 1} Distribution")
-        plt.xlabel("Quota")
-        plt.ylabel("Probability")
-        ax = plt.gca()
+        fig, ax = plt.subplots(2)
+        ax[0].bar(quota_dist_info[0], quota_dist_info[2])
+        ax[1].bar(quota_dist_info[1], quota_dist_info[2])
+        ax[0].set(title=f"Quota {quota_num + 1} Distribution", xlabel="Quota",
+                  ylabel="Probability")
+        ax[1].set(title=f"Cumulative quota {quota_num + 1} Distribution",
+                  xlabel="Cumulative quota", ylabel="Probability")
         if quota_num == 0:
-            ax.xaxis.set_major_locator(tick.MultipleLocator(base=1))
+            ax[0].xaxis.set_major_locator(tick.MultipleLocator(base=1))
+            ax[1].xaxis.set_major_locator(tick.MultipleLocator(base=1))
         else:
-            ax.xaxis.set_major_locator(tick.MaxNLocator(integer=True))
+            ax[0].xaxis.set_major_locator(tick.MaxNLocator(integer=True))
+            ax[1].xaxis.set_major_locator(tick.MaxNLocator(integer=True))
         plt.savefig(f"graphs/quota_{quota_num + 1}_dist.pdf")
         plt.clf()
 
@@ -98,12 +113,14 @@ def extract_int_from_path(path):
 
 
 def process_quota_distributions() -> None:
-    """Processes the quota distributions"""
-    quota_record_list_series: list[tuple[int_array, float_array]] = []
+    """Processes the quota distributions
+    Will need to check"""
+    quota_record_list_series = []
     for quota_file in sorted(glob.glob("saved_arrays/quota_*.pkl"),
                              key=extract_int_from_path):
         quota_record_list_series.append(pd.read_pickle(quota_file))
-    quota_record_list_series.insert(0, (np.array([130]), np.array([1.0])))
+    quota_record_list_series.insert(0, (np.array([130]), np.array([130]),
+                                        np.array([1.0])))
     find_stats(quota_record_list_series)
     # plot_bar_dist(quota_record_list_series)
 

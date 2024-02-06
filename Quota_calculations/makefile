@@ -24,6 +24,14 @@ INCLUDE_DIRS = /I "C:\Users\twlln\AppData\Local\Programs\Python\Python312\includ
 
 build: $(TARGET) clean
 
+build_old: Quota_working_calc.pyd clean
+
+Quota_working_calc.pyd: Quota_working_calc.c
+	$(CC) $(CFLAGS) Quota_working_calc.c $(LDFLAGS) $(LIB_PATHS) /OUT:Quota_working_calc.pyd
+
+Quota_working_calc.c: Quota_working_calc.pyx
+	cython.exe -3 $(CYTHON_FLAGS) Quota_working_calc.pyx
+
 run: build
 	python.exe Quota_distribution_interpreter.py
 
@@ -32,7 +40,6 @@ $(TARGET): $(C_SRC)
 
 $(C_SRC): $(CYTHON_SRC)
 	cython.exe -3 $(CYTHON_FLAGS) $(CYTHON_SRC)
-
 
 .PHONY: clean
 
