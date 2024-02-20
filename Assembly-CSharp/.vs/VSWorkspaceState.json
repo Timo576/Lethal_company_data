@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\DunGen"
+    "\\GameNetcodeStuff"
   ],
+  "SelectedNode": "\\GameNetcodeStuff\\PlayerControllerB.cs",
   "PreviewInSolutionExplorer": false
 }

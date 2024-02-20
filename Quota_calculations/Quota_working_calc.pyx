@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 cimport numpy as cnp
 from libc.stdlib cimport malloc, free
 # noinspection PyUnresolvedReferences
@@ -13,6 +14,7 @@ cpdef calculate_distributions(
         long long[::1] previous_quotas,
         double[::1] previous_probabilities):
     """Calculates the distributions for a given quota number"""
+
     cdef double current_multiple = (1 + (quota_num * quota_num) / 16)
     # Set values in current_quota_shape to be the rounded and multiplied
     # values of change in quota
@@ -32,6 +34,16 @@ cpdef calculate_distributions(
     for indexer in prange(10000000, nogil=True):
         current_quota_shape[<long> (current_multiple * base_dist_array[
             indexer]) - current_quota_offset] += 1
+
+    # temp = pd.DataFrame(np.loadtxt("saved_arrays/plain"))
+    # save = np.empty((current_array_shape+1,), dtype=np.longlong)
+    # save[0] = current_quota_offset
+    # for indexer in range(current_array_shape):
+    #     save[indexer+1] = current_quota_shape[indexer]
+    # save = pd.DataFrame(save).T
+    # save2 = pd.concat([temp, save], axis=0)
+    # np.savetxt("saved_arrays/plain", save2, fmt="%.0f")
+
     cdef long prev_quota_len = previous_quotas.shape[0]
     cdef long longest = (previous_quotas[prev_quota_len - 1] +
                         current_array_shape - previous_quotas[0])
@@ -48,10 +60,12 @@ cpdef calculate_distributions(
 
     cdef long prev_quota_idx
     cdef long long prev_quota
+    cdef double prev_prob
     cdef double val_count
 
     for prev_quota_idx in prange(prev_quota_len, nogil=True):
         prev_quota = previous_quotas[prev_quota_idx]
+        prev_prob = previous_probabilities[prev_quota_idx]
         for indexer in prange(longest):
             quota_count[indexer] = 0
         for indexer in prange(current_array_shape):
@@ -60,16 +74,15 @@ cpdef calculate_distributions(
             quota_count[indexer + prev_quota - previous_quotas[0]
                         ] = current_quota_shape[indexer]
         for indexer in prange(longest):
-            val_count = (quota_count[indexer] *
-                                       previous_probabilities[prev_quota_idx])
+            val_count = (quota_count[indexer] * prev_prob)
             counts[indexer] += val_count
             quota_counts_sum += val_count
     free(current_quota_shape)
     free(quota_count)
     cdef cnp.ndarray[cnp.float64_t, ] quota_probs = np.empty(
         (longest,), dtype=float)
-    for counts_idx in range(longest):
-        quota_probs[counts_idx] = counts[counts_idx] / quota_counts_sum
+    for indexer in range(longest):
+        quota_probs[indexer] = counts[indexer] / quota_counts_sum
     free(counts)
     cdef cnp.ndarray[long long, ]quota_values = np.indices(
         (longest,), dtype=np.longlong)[0]

@@ -38,7 +38,7 @@ def save_multiple_distributions(
         quota_distribution = (calculate_distributions(
             base_dist_array, 1, np.array([130], dtype=np.longlong),
             np.array([1.0])))
-        # pd.to_pickle(quota_distribution, f"saved_arrays/quota_2.pkl")
+        pd.to_pickle(quota_distribution, f"saved_arrays/quota_2.pkl")
         print("Quota 2 done")
         starting_quota = 3
     for quota_num in range(starting_quota, upper_quota + 1):
@@ -49,8 +49,8 @@ def save_multiple_distributions(
         prev_quotas, prev_probabilities = pickled_quota
         quota_distribution = (calculate_distributions(
             base_dist_array, quota_num - 1, prev_quotas, prev_probabilities))
-        # pd.to_pickle(quota_distribution,
-        #              f"saved_arrays/quota_{quota_num}.pkl")
+        pd.to_pickle(quota_distribution,
+                     f"saved_arrays/quota_{quota_num}.pkl")
         print(f"Quota {quota_num} done")
 
 
@@ -116,9 +116,9 @@ def many_plots_and_averages():
     pre = timeit.default_timer()
     base_dist_array: float_array = np.load(
         "saved_arrays/quota_test_monte.npy")
-    save_multiple_distributions(base_dist_array, 1, 5)
+    save_multiple_distributions(base_dist_array, 1, 11)
     print(f"Time taken: {timeit.default_timer() - pre:.0f} seconds")
-    process_quota_distributions()
+    # process_quota_distributions()
 
 
 if __name__ == '__main__':

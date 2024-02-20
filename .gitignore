@@ -5,4 +5,5 @@
 *.exp
 *.obj
 *.npy
+*.pyc
 Quota_calculations/graphs/*

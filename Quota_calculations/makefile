@@ -3,7 +3,7 @@ CYTHON_FLAGS = -Wextra -X language_level=3 -X boundscheck=False \
 -X wraparound=False -X cdivision=True -X initializedcheck=False \
 -X c_api_binop_methods=True -E extra_compile_args=['/openmp'] \
 -E CYTHON_ATOMICS=1 -a
-FILENAME = Quota_distribution_calculator
+FILENAME = Quota_working_calc
 CYTHON_SRC = $(FILENAME).pyx
 C_SRC = $(FILENAME).c
 TARGET = $(FILENAME).pyd
@@ -24,16 +24,8 @@ INCLUDE_DIRS = /I "C:\Users\twlln\AppData\Local\Programs\Python\Python312\includ
 
 build: $(TARGET) clean
 
-build_old: Quota_working_calc.pyd clean
-
-Quota_working_calc.pyd: Quota_working_calc.c
-	$(CC) $(CFLAGS) Quota_working_calc.c $(LDFLAGS) $(LIB_PATHS) /OUT:Quota_working_calc.pyd
-
-Quota_working_calc.c: Quota_working_calc.pyx
-	cython.exe -3 $(CYTHON_FLAGS) Quota_working_calc.pyx
-
 run: build
-	python.exe Quota_distribution_interpreter.py
+	python.exe Quota_working.py
 
 $(TARGET): $(C_SRC)
 	$(CC) $(CFLAGS) $(C_SRC) $(LDFLAGS) $(LIB_PATHS) /OUT:$(TARGET)
